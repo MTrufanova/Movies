@@ -19,10 +19,10 @@ struct Movie: Decodable {
     let originalTitle: String
     let title: String
     let voteAverage: Double
-    var imagePosterUrl:URL? {
+    var imagePosterUrl: URL? {
         return URL(string: "\("https://image.tmdb.org/t/p/w500/")\(poster ?? " ")")
       }
-    
+
     var yearOfRelease: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
@@ -30,7 +30,7 @@ struct Movie: Decodable {
         formatter.dateFormat = "YYYY"
        return formatter.string(from: formattedDate)
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case poster = "poster_path"
         case releaseDate = "release_date"
@@ -57,11 +57,11 @@ struct  DetailMovie: Decodable {
         let status, tagline, title: String
         let voteAverage: Double
         let voteCount: Int
-    
-    var imagePosterUrl:URL? {
+
+    var imagePosterUrl: URL? {
         return URL(string: "\("https://image.tmdb.org/t/p/w500/")\(backdropPath ?? " ")")
       }
-    
+
     enum CodingKeys: String, CodingKey {
             case adult
             case backdropPath = "backdrop_path"
@@ -90,7 +90,7 @@ struct ProductionCompany: Codable {
     let id: Int
     let logoPath: String?
     let name, originCountry: String
-    
+
     enum CodingKeys: String, CodingKey {
             case id
             case logoPath = "logo_path"

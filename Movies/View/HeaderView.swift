@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class HeaderView: UICollectionReusableView {
-    
+
     static let identifier = "headerViewIdentifier"
     let posterImageView: UIImageView = {
        let imageView = UIImageView()
@@ -17,7 +17,7 @@ class HeaderView: UICollectionReusableView {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -25,25 +25,24 @@ class HeaderView: UICollectionReusableView {
         label.font = .systemFont(ofSize: 24, weight: .heavy)
         return label
     }()
-    
-    
+
     lazy var raitingLabel = UILabel()
-    
+
     lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
        setupLayout()
         setupGradientLayer()
         createStack()
     }
-    
-    func createStack()  {
+
+    func createStack() {
         let stack = createRaitingStack(label: raitingLabel)
         let headerStack = UIStackView(arrangedSubviews: [titleLabel, stack, dateLabel])
         headerStack.axis = .vertical
@@ -53,9 +52,9 @@ class HeaderView: UICollectionReusableView {
         headerStack.snp.makeConstraints { (make) in
             make.bottom.trailing.leading.equalToSuperview().inset(16)
         }
-        
+
     }
-    
+
     func setupCell(model: Movie?) {
         guard  let url = model?.imagePosterUrl else {return}
         guard let data = try? Data(contentsOf: url) else {return}
@@ -66,18 +65,18 @@ class HeaderView: UICollectionReusableView {
     }
     private func setupLayout() {
         addSubview(posterImageView)
-        
+
         posterImageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-       
+
     }
-    
+
     private func setupGradientLayer() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1]
-        
+
         let gradientContainerView = UIView()
         addSubview(gradientContainerView)
         gradientContainerView.snp.makeConstraints { (make) in
@@ -87,8 +86,7 @@ class HeaderView: UICollectionReusableView {
         gradientLayer.frame = self.bounds
         gradientLayer.frame.origin.y -= bounds.height
     }
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

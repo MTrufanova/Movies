@@ -8,6 +8,7 @@ target 'Movies' do
   # Pods for Movies
 	
   pod 'SnapKit'
+  pod 'SwiftLint'
 
   target 'MoviesTests' do
     inherit! :search_paths

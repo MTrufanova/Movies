@@ -1,0 +1,14 @@
+line_length:
+- 200 # warning
+- 350 # error
+identifier_name:
+   allowed_symbols: "_"
+   excluded:
+    - id
+type_name:
+   allowed_symbols: "_"
+
+disabled_rules:
+- trailing_whitespace
+
+

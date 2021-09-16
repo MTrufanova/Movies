@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 class MainMovieCell: UITableViewCell {
 static let identifier = "movieCell"
-    
+
     lazy var posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -17,7 +17,7 @@ static let identifier = "movieCell"
         imageView.layer.cornerRadius = 10
         return imageView
     }()
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .heavy)
@@ -25,22 +25,22 @@ static let identifier = "movieCell"
         label.textColor = .white
         return label
     }()
-    
+
     lazy var raitingLabel = UILabel()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()
         createTitleStack()
         backgroundColor = .black
         selectionStyle = .none
-       
+
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -51,14 +51,14 @@ static let identifier = "movieCell"
 
         // Configure the view for the selected state
     }
-    
+
     func setupCell(model: Movie) {
         guard  let url = model.imagePosterUrl else {return}
         guard let data = try? Data(contentsOf: url) else {return}
         posterImageView.image = UIImage(data: data)
         titleLabel.text = model.title
         raitingLabel.text = String(model.voteAverage)
-        
+
     }
 
     func createTitleStack() {
@@ -73,16 +73,16 @@ static let identifier = "movieCell"
             make.top.trailing.equalToSuperview().inset(16)
         }
     }
-    
+
     private func setupLayout() {
         addSubview(posterImageView)
-       
+
         posterImageView.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.top.bottom.equalToSuperview().inset(8)
             make.width.equalTo(90)
         }
-        
+
     }
-    
+
 }
