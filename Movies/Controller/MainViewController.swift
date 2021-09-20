@@ -11,7 +11,7 @@ import SnapKit
 class MainViewController: UIViewController {
 
     var movies = [Movie]()
-    let apiClient: APIServiceProtocol = APIService()
+    let networkManager: NetworkServiceProtocol = NetworkService()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -42,8 +42,8 @@ class MainViewController: UIViewController {
     }
 
     func presentData() {
-        apiClient.getData { (result) in
-            DispatchQueue.main.async {
+        networkManager.getData { (result) in
+
                 switch result {
                 case .success(let movies):
                     self.movies = movies.results
@@ -52,7 +52,6 @@ class MainViewController: UIViewController {
                     self.movies = []
                     self.tableView.reloadData()
                 }
-            }
         }
     }
 
