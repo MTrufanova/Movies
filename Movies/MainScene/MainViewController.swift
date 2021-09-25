@@ -10,8 +10,7 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
-    var movies = [Movie]()
-    let networkManager: NetworkServiceProtocol = NetworkService()
+    var presenter: MainMoviePresenterProtocol?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -25,12 +24,12 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.loadMovies()
         customNavigationBar()
         setupLayout()
-        presentData()
     }
 
-    func customNavigationBar() {
+   private func customNavigationBar() {
         navigationItem.title = "Movies"
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -41,21 +40,7 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
     }
 
-    func presentData() {
-        networkManager.getData { (result) in
-
-                switch result {
-                case .success(let movies):
-                    self.movies = movies.results
-                    self.tableView.reloadData()
-                case .failure( _):
-                    self.movies = []
-                    self.tableView.reloadData()
-                }
-        }
-    }
-
-    func setupLayout() {
+   private func setupLayout() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -70,7 +55,7 @@ extension MainViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movie = movies[indexPath.row]
+        let movie = presenter?.movies[indexPath.row]
         let detailVC = DetailViewController()
         detailVC.movie = movie
         // navigationController?.navigationBar.tintColor = .white
@@ -81,14 +66,25 @@ extension MainViewController: UITableViewDelegate {
 }
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        presenter?.movies.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainMovieCell.identifier, for: indexPath) as? MainMovieCell else {return UITableViewCell() }
-        let movie = movies[indexPath.row]
+        guard let movie = presenter?.movies[indexPath.row] else { return UITableViewCell() }
         cell.setupCell(model: movie)
         return cell
+    }
+
+}
+
+extension MainViewController: MainMovieViewProtocol {
+    func succesLoad() {
+        tableView.reloadData()
+    }
+
+    func failureLoad(error: Error) {
+        
     }
 
 }
