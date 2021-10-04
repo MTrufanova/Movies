@@ -8,6 +8,11 @@
 import UIKit
 import SnapKit
 
+protocol MainMovieViewProtocol: AnyObject {
+    func succesLoad()
+    func failureLoad(error: Error)
+}
+
 class MainViewController: UIViewController {
 
     var presenter: MainMoviePresenterProtocol?
@@ -56,8 +61,8 @@ extension MainViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = presenter?.movies[indexPath.row]
-        let detailVC = DetailViewController()
-        detailVC.movie = movie
+        let detailVC = DetailMovieFactory.configuredDetailMovieScene(movie: movie)
+       // detailVC.movie = movie
         // navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(detailVC, animated: true)
 

@@ -7,17 +7,12 @@
 
 import Foundation
 
-protocol MainMovieViewProtocol: AnyObject {
-    func succesLoad()
-    func failureLoad(error: Error)
-}
-
 protocol MainMoviePresenterProtocol: AnyObject {
     var movies: [Movie] { get }
     func loadMovies()
 }
 
-class MainMoviePresenter: MainMoviePresenterProtocol {
+final class MainMoviePresenter: MainMoviePresenterProtocol {
     private(set) var movies = [Movie]()
     let networkManager: NetworkServiceProtocol
     weak var mainMovieView: MainMovieViewProtocol?

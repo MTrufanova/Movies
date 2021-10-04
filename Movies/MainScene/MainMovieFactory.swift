@@ -11,7 +11,7 @@ protocol MainMovieFactoryProtocol {
     static func configuredMainMovieScene() -> UIViewController
 }
 
-class MainMovieFactory: MainMovieFactoryProtocol {
+final class MainMovieFactory: MainMovieFactoryProtocol {
     static func configuredMainMovieScene() -> UIViewController {
         let mainMovieView = MainViewController()
         let networkManager = NetworkService()

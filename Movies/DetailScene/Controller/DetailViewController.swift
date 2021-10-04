@@ -8,10 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol DetailViewProtocol: AnyObject {
+    func showMovie(movie: Movie?)
+}
+
 class DetailViewController: UIViewController {
 
     var movie: Movie?
-
+    var presenter: DetailMoviePreseterProtocol?
+    
     var headerView: HeaderView?
     private let padding: CGFloat = 16
     lazy var collectionView: UICollectionView = {
@@ -29,6 +34,7 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.loadMovie()
         setupLayout()
 
     }
@@ -88,6 +94,13 @@ extension DetailViewController: UICollectionViewDataSource {
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width - 2 * padding, height: 200)
+    }
+
+}
+
+extension DetailViewController: DetailViewProtocol {
+    func showMovie(movie: Movie?) {
+        self.movie = movie
     }
 
 }
