@@ -10,15 +10,18 @@ import Foundation
 protocol MainMoviePresenterProtocol: AnyObject {
     var movies: [Movie] { get }
     func loadMovies()
+    func pushDetailVC(for movie: Movie)
 }
 
 final class MainMoviePresenter: MainMoviePresenterProtocol {
     private(set) var movies = [Movie]()
-    let networkManager: NetworkServiceProtocol
+    private let networkManager: NetworkServiceProtocol
+    private let router: MainMovieRouterProtocol
     weak var mainMovieView: MainMovieViewProtocol?
 
-    init(networkManager: NetworkServiceProtocol, mainMovieView: MainMovieViewProtocol) {
+    init(networkManager: NetworkServiceProtocol, router: MainMovieRouterProtocol, mainMovieView: MainMovieViewProtocol) {
         self.networkManager = networkManager
+        self.router = router
         self.mainMovieView = mainMovieView
     }
 
@@ -33,6 +36,10 @@ final class MainMoviePresenter: MainMoviePresenterProtocol {
                 self.mainMovieView?.failureLoad(error: error)
             }
         }
+    }
+
+    func pushDetailVC(for movie: Movie) {
+        router.pushDetailInfo(for: movie)
     }
 
 }

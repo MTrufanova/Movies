@@ -62,7 +62,6 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = presenter?.movies[indexPath.row]
         let detailVC = DetailMovieFactory.configuredDetailMovieScene(movie: movie)
-       // detailVC.movie = movie
         // navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(detailVC, animated: true)
 

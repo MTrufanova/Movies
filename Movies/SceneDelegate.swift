@@ -18,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
-        let mainVC = MainMovieFactory.configuredMainMovieScene()
-        let navigationController = UINavigationController(rootViewController: mainVC)
+        let navigationController = UINavigationController()
+        let mainFactory = MainMovieFactory(navigationController: navigationController)
+        let mainVC = mainFactory.configuredMainMovieScene()
+        navigationController.pushViewController(mainVC, animated: true)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

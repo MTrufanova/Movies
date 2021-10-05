@@ -5,7 +5,7 @@
 Приложение с топ фильмов.
 
 На данный момент:
-- MVC
+- MVP + Router
 - URLSession
 - UITableView
 - SwiftLint

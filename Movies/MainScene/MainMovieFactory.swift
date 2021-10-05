@@ -8,14 +8,21 @@
 import UIKit
 
 protocol MainMovieFactoryProtocol {
-    static func configuredMainMovieScene() -> UIViewController
+     func configuredMainMovieScene() -> UIViewController
 }
 
 final class MainMovieFactory: MainMovieFactoryProtocol {
-    static func configuredMainMovieScene() -> UIViewController {
+    private let navigationController: UINavigationController
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+
+     func configuredMainMovieScene() -> UIViewController {
         let mainMovieView = MainViewController()
         let networkManager = NetworkService()
-        let presenter = MainMoviePresenter(networkManager: networkManager, mainMovieView: mainMovieView)
+        let router = MainMovieRouter(navigationController: navigationController)
+        let presenter = MainMoviePresenter(networkManager: networkManager, router: router, mainMovieView: mainMovieView)
         mainMovieView.presenter = presenter
         return mainMovieView
     }

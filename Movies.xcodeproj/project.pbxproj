@@ -26,6 +26,7 @@
 		4676987526FF3DDE00797F9B /* MainMovieFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676987426FF3DDE00797F9B /* MainMovieFactory.swift */; };
 		467698772704E6A300797F9B /* DetailMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467698762704E6A300797F9B /* DetailMoviePresenter.swift */; };
 		46769879270B0D2300797F9B /* DetailMovieFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46769878270B0D2300797F9B /* DetailMovieFactory.swift */; };
+		4676987B270B281C00797F9B /* MainMovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676987A270B281C00797F9B /* MainMovieRouter.swift */; };
 		46CEC9C526F8BFD000266400 /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CEC9C426F8BFD000266400 /* HTTPMethods.swift */; };
 		46CEC9C726F8C39E00266400 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CEC9C626F8C39E00266400 /* NetworkError.swift */; };
 		6A1462AA23446052732E61AE /* Pods_MoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2377363F09C05C0E2B789A /* Pods_MoviesTests.framework */; };
@@ -78,6 +79,7 @@
 		4676987426FF3DDE00797F9B /* MainMovieFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMovieFactory.swift; sourceTree = "<group>"; };
 		467698762704E6A300797F9B /* DetailMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMoviePresenter.swift; sourceTree = "<group>"; };
 		46769878270B0D2300797F9B /* DetailMovieFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieFactory.swift; sourceTree = "<group>"; };
+		4676987A270B281C00797F9B /* MainMovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMovieRouter.swift; sourceTree = "<group>"; };
 		46CEC9C426F8BFD000266400 /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
 		46CEC9C626F8C39E00266400 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5009D1B732A443B3141A681F /* Pods-Movies-MoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies-MoviesUITests.release.xcconfig"; path = "Target Support Files/Pods-Movies-MoviesUITests/Pods-Movies-MoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				4640BBA326529E890088CE23 /* MainMovieCell.swift */,
 				4676987226FF373900797F9B /* MainMoviePresenter.swift */,
 				4676987426FF3DDE00797F9B /* MainMovieFactory.swift */,
+				4676987A270B281C00797F9B /* MainMovieRouter.swift */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				4640BB8B265282380088CE23 /* MoviesModel.swift in Sources */,
 				4676987526FF3DDE00797F9B /* MainMovieFactory.swift in Sources */,
 				4640BB83265281B70088CE23 /* NetworkService.swift in Sources */,
+				4676987B270B281C00797F9B /* MainMovieRouter.swift in Sources */,
 				46CEC9C526F8BFD000266400 /* HTTPMethods.swift in Sources */,
 				4640BB4C26527F4B0088CE23 /* SceneDelegate.swift in Sources */,
 				46CEC9C726F8C39E00266400 /* NetworkError.swift in Sources */,
